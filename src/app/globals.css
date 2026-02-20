@@ -1,26 +1,46 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg0: #050507;
+  --bg1: #07070a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Fonts */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 700px at 50% 30%, rgba(255, 90, 60, 0.06), transparent 60%),
+              radial-gradient(900px 500px at 30% 70%, rgba(255, 210, 130, 0.05), transparent 65%),
+              linear-gradient(180deg, var(--bg0), var(--bg1));
+  color: white;
+  min-height: 100vh;
+}
+
+/* Luxury serif for the fortune */
+.serif {
+  font-family: var(--font-cormorant), Georgia, "Times New Roman", Times, serif;
+}
+
+/* Envelope flap / bottom clip paths */
+.clip-path-envelope-flap {
+  clip-path: polygon(0 0, 100% 0, 50% 85%);
+  background: linear-gradient(145deg, #7a0000, #c90000);
+  opacity: 0.95;
+}
+
+.clip-path-envelope-bottom {
+  clip-path: polygon(0 100%, 100% 100%, 50% 10%);
+}
+
+/* Subtle film grain */
+.grain:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
 }
