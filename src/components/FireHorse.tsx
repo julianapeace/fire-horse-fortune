@@ -5,8 +5,7 @@ import { motion } from "framer-motion";
 export default function FireHorse() {
   return (
     <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-      <div className="relative w-[860px] max-w-[92vw]">
-        <div className="absolute -inset-24 rounded-full blur-3xl opacity-40 bg-[radial-gradient(circle_at_center,rgba(255,180,60,0.18),rgba(0,0,0,0))]" />
+      <div className="relative w-[640px] max-w-[85vw] opacity-[0.14]">
         <svg
           viewBox="0 0 1200 700"
           className="relative w-full drop-shadow-[0_0_18px_rgba(255,215,130,0.10)]"

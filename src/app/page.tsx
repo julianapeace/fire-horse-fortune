@@ -39,48 +39,42 @@ export default function Page() {
   };
 
   return (
-    <main className="grain relative min-h-screen overflow-hidden">
-      {/* Background accents */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-[-240px] h-[620px] w-[620px] -translate-x-1/2 rounded-full blur-3xl opacity-30 bg-[radial-gradient(circle_at_center,rgba(255,90,60,0.25),rgba(0,0,0,0))]" />
-        <div className="absolute right-[-220px] bottom-[-220px] h-[520px] w-[520px] rounded-full blur-3xl opacity-25 bg-[radial-gradient(circle_at_center,rgba(255,210,130,0.22),rgba(0,0,0,0))]" />
-      </div>
-
+    <main className="grain relative min-h-screen overflow-hidden bg-[var(--bg0)]">
       <FireHorse />
 
-      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-6 py-16">
+      <div className="relative mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center px-8 py-20">
         <motion.div
           className="text-center"
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <div className="text-[11px] tracking-[0.55em] uppercase text-white/65">
+          <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--ink-muted)]">
             Lunar New Year
-          </div>
-          <h1 className="mt-5 serif text-4xl md:text-6xl leading-[1.05] text-white/95">
+          </p>
+          <h1 className="mt-6 serif text-3xl md:text-5xl font-light tracking-tight text-[var(--ink)]">
             {yearLabel}
           </h1>
-          <div className="mt-4 text-sm md:text-base text-white/60 tracking-wide">
+          <p className="mt-5 text-[13px] tracking-[0.02em] text-[var(--ink-muted)]">
             {subLabel}
-          </div>
+          </p>
         </motion.div>
 
-        <div className="mt-14">
+        <div className="mt-16">
           <AnimatePresence mode="wait">
             {!fortune ? (
               <motion.div
                 key="envelope"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.5 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
                 className="flex flex-col items-center"
               >
                 <RedEnvelope onOpen={openEnvelope} disabled={opened} />
-                <div className="mt-7 text-xs tracking-[0.32em] uppercase text-white/45">
-                  One tap. One fortune.
-                </div>
+                <p className="mt-8 text-[10px] tracking-[0.35em] uppercase text-[var(--ink-subtle)]">
+                  Tap to reveal
+                </p>
               </motion.div>
             ) : (
               <motion.div
@@ -88,24 +82,17 @@ export default function Page() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.35 }}
+                transition={{ duration: 0.3 }}
                 className="w-full"
               >
-                {/* Flame burst overlay */}
-                <motion.div
-                  className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl opacity-40 bg-[radial-gradient(circle_at_center,rgba(255,120,60,0.35),rgba(0,0,0,0))]"
-                  initial={{ scale: 0.65, opacity: 0 }}
-                  animate={{ scale: 1.05, opacity: 0.35 }}
-                  transition={{ duration: 0.9, ease: "easeOut" }}
-                />
                 <FortuneCard
                   fortune={fortune}
                   onReset={() => setFortune(pickRandomFortune(fortune))}
                 />
-                <div className="mt-6 text-center">
+                <div className="mt-8 text-center">
                   <button
                     onClick={reset}
-                    className="text-xs tracking-[0.32em] uppercase text-white/50 hover:text-white/75 transition"
+                    className="text-[10px] tracking-[0.3em] uppercase text-[var(--ink-subtle)] hover:text-[var(--ink-muted)] transition-colors"
                   >
                     Close
                   </button>
@@ -115,9 +102,9 @@ export default function Page() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-16 text-center text-[11px] tracking-[0.45em] uppercase text-white/35">
-          No accounts. No history. Just heat.
-        </div>
+        <p className="mt-20 text-center text-[10px] tracking-[0.35em] uppercase text-[var(--ink-subtle)]">
+          No accounts. No history.
+        </p>
       </div>
     </main>
   );
